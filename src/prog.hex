@@ -1,0 +1,54 @@
+// Affine Transform Program 
+// n = 8 bits, Isize = 8+n = 16 bits
+// format: 8b opcode, 8b immediate or address
+// 
+// opcode bits
+// bit[7] = Accumulator reset
+// bit[6] = Hold program counter
+// bit[5] = Select SW as ALU input
+// bit[4] = Select Imm as ALU input
+// bit[3] = Select Reg as ALU input
+// bit[2] = Use Multiplier
+// bit[1] = Accumulator write
+// bit[0] = Register write
+//
+// HEX /////////// BINARY  ///////////////////// ASSEMBLER /////////
+// x1 operations
+C000      //    {8'b11000000 , 8'b0}          // Wait until SW8 == 1 && accum = 0
+2200      //    {8'b00100010 , 8'b0}          // accum = SW[7:0] (x1)
+1660      //    {8'b00010110 , 8'b01100000}   // accum = x1 * 0.75
+1214      //    {8'b00010010 , 8'b00010100}   // accum = (x1 * 0.75) + 20
+0100      //    {8'b00000001 , 8'b0}          // r0 = accum = (x1 * 0.75) + 20
+8000      //    {8'b10000000 , 8'b0}          // accum = 0
+2200      //    {8'b00100010 , 8'b0}          // accum = SW[7:0] (x1)
+16C0      //    {8'b00010110 , 8'b11000000}   // accum = x1 * -0.5
+12EC      //    {8'b00010010 , 8'b11101100}   // accum = (x1 * -0.5) - 20
+01FF      //    {8'b00000001 , 8'b1}          // r1 = (x1 * -0.5) - 20
+
+// y1 operations
+C0FF      //    {8'b11000000 , 8'b1}         // Wait until SW8 == 0 && accum = 0
+4000      //    {8'b01000000 , 8'b0}         // Wait until SW8 == 1
+2200      //    {8'b00100010 , 8'b0}         // accum = SW[7:0] (y1)
+1640      //    {8'b00010110 , 8'b01000000}  // accum = y1 * 0.5
+0800      //    {8'b00001000 , 8'b0}         // AluB = r0
+0A00      //    {8'b00001010 , 8'b0}         // accum = (y1 * 0.5) + r0
+0100      //    {8'b00000001 , 8'b0}         // r0 = accum = (x1 * 0.75) + (y1 * 0.5) + 20
+8000      //    {8'b10000000 , 8'b0}         // accum = 0
+2200      //    {8'b00100010 , 8'b0}         // accum = SW[7:0] (y1)
+1660      //    {8'b00010110 , 8'b01100000}  // accum = y1 * 0.75
+08FF      //    {8'b00001000 , 8'b1}         // AluB = r1
+0AFF      //    {8'b00001010 , 8'b1}         // accum = (y1 * 0.75) + r1
+01FF      //    {8'b00000001 , 8'b1}         // r1 = accum = (x1 * -0.5) + (y1 * 0.75) - 20
+
+// Display x2
+C801      //    {8'b11001000 , 8'b00000001}  // Wait until SW8 == 0 && AluB = r0 && accum = 0
+0A00      //    {8'b00001010 , 8'b0}         // accum = r0 = x2
+
+// Display y2
+4000      //    {8'b01000000 , 8'b0}         // Wait until SW8 == 1
+88FF      //    {8'b10001000 , 8'b1}         // accum = 0 && AluB = r1
+0AFF      //    {8'b00001010 , 8'b1}         // accum = r1 = y2
+40FF      //    {8'b01000000 , 8'b1}         // Wait until SW8 == 0
+0000
+0000
+0000

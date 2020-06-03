@@ -1,0 +1,43 @@
+Info: Start Nativelink Simulation process
+
+========= EDA Simulation Settings =====================
+
+Sim Mode              :  Gate
+Family                :  cyclonev
+Quartus root          :  d:/programs/altera_lite/16.0/quartus/bin64/
+Quartus sim root      :  d:/programs/altera_lite/16.0/quartus/eda/sim_lib
+Simulation Tool       :  modelsim-altera
+Simulation Language   :  systemverilog
+Simulation Mode       :  GUI
+Sim Output File       :  picoMIPS4test.svo
+Sim SDF file          :  picoMIPS4test__verilog.sdo
+Sim dir               :  simulation\modelsim
+
+=======================================================
+
+Info: Starting NativeLink simulation with ModelSim-Altera software
+Sourced NativeLink script d:/programs/altera_lite/16.0/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Probing transcript
+ModelSim-Altera Info: # Reading D:/Programs/altera_lite/16.0/modelsim_ase/tcl/vsim/pref.tcl
+ModelSim-Altera Info: # do picoMIPS4test_run_msim_gate_systemverilog.do
+ModelSim-Altera Info: # if {[file exists gate_work]} {
+ModelSim-Altera Info: # 	vdel -lib gate_work -all
+ModelSim-Altera Info: # }
+ModelSim-Altera Info: # vlib gate_work
+ModelSim-Altera Info: # vmap work gate_work
+ModelSim-Altera Info: # Model Technology ModelSim ALTERA vmap 10.4d Lib Mapping Utility 2015.12 Dec 30 2015
+ModelSim-Altera Info: # vmap work gate_work 
+ModelSim-Altera Info: # Copying D:/Programs/altera_lite/16.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+ModelSim-Altera Info: # Modifying modelsim.ini
+ModelSim-Altera Info: # 
+ModelSim-Altera Info: # vlog -sv -work work +incdir+. {picoMIPS4test.svo}
+ModelSim-Altera Info: # Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+ModelSim-Altera Info: # Start time: 16:31:14 on Apr 14,2019
+ModelSim-Altera Info: # vlog -reportprogress 300 -sv -work work "+incdir+." picoMIPS4test.svo 
+ModelSim-Altera Info: # -- Compiling module picoMIPS4test
+ModelSim-Altera Info: # 
+ModelSim-Altera Info: # Top level modules:
+ModelSim-Altera Info: # 	picoMIPS4test
+ModelSim-Altera Info: # End time: 16:31:14 on Apr 14,2019, Elapsed time: 0:00:00
+ModelSim-Altera Info: # Errors: 0, Warnings: 0
+Info: NativeLink simulation flow was successful
